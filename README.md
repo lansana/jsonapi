@@ -15,7 +15,7 @@ This allows for optional arguments with default values without requiring any con
 
 **Action:**
 
-```
+```go
 func (w http.ResponseWriter, r *http.Request) {
     jsonapi.OK(w)
 }
@@ -24,6 +24,7 @@ func (w http.ResponseWriter, r *http.Request) {
 **Result:**
 
 ```go
+200 OK
 {"code": 200, "data": "OK"}
 ```
 
@@ -38,6 +39,7 @@ func (w http.ResponseWriter, r *http.Request) {
 **Result:**
 
 ```go
+200 OK
 {"code": 200, "data": {"foo": "bar"}}
 ```
 
@@ -49,14 +51,15 @@ func (w http.ResponseWriter, r *http.Request) {
         Name  string `json:"name"`
 	Email string `json:"email"
     }
-    jsonapi.OK(w, User{Name: "John Doe", email: "johndoe@domain.com")
+    jsonapi.Created(w, User{Name: "John Doe", email: "johndoe@domain.com")
 }
 ```
 
 **Result:**
 
 ```go
-{"code": 200, "data": {"name": "John Doe", "email", "johndoe@domain.com"}}
+201 Created
+{"code": 201, "data": {"name": "John Doe", "email", "johndoe@domain.com"}}
 ```
 
 ## Responder interface 
