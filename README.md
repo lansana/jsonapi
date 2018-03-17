@@ -1,17 +1,9 @@
 # jsonapi
 A lightweight JSON response writer. Fully tested, expressive and uses only the standard library.
 
-## How to use
-
-The `data` argument is optional on all methods. 
-
-If omitted, the response data field will be set to the HTTP status text. 
-
-If provided, the response data field will be set to the first argument, and all other arguments will be ignored.
-
-This allows for optional arguments with default values without requiring any configuration or structs.
-
 ## Examples
+
+The `data` argument is optional on all methods. If omitted, the response data field will be set to the HTTP status text. If provided, the response data field will be set to the first argument, and all other arguments will be ignored. This allows for optional arguments with default values without requiring any configuration or structs.
 
 **Action:**
 
