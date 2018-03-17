@@ -3,10 +3,22 @@ A lightweight JSON response writer. Fully tested, expressive and uses only the s
 
 ## How to use
 
+The `data` argument is optional on all methods. 
+
+If omitted, the response data field will be set to the HTTP status text. 
+
+If provided, the response data field will be set to the first argument, and all other arguments will be ignored.
+
+This allows for optional arguments with default values without requiring any configuration or structs.
+
+## Examples
+
 **Action:**
 
 ```
-jsonapi.OK(w)
+func (w http.ResponseWriter, r *http.Request) {
+    jsonapi.OK(w)
+}
 ```
 
 **Result:**
@@ -18,13 +30,33 @@ jsonapi.OK(w)
 **Action:**
 
 ```go
-jsonapi.OK(w, map[string]string{"foo": "bar"})
+func (w http.ResponseWriter, r *http.Request) {
+    jsonapi.OK(w, map[string]string{"foo": "bar"})
+}
 ```
 
 **Result:**
 
 ```go
 {"code": 200, "data": {"foo": "bar"}}
+```
+
+**Action:**
+
+```go
+func (w http.ResponseWriter, r *http.Request) {
+    type User struct {
+        Name  string `json:"name"`
+	Email string `json:"email"
+    }
+    jsonapi.OK(w, User{Name: "John Doe", email: "johndoe@domain.com")
+}
+```
+
+**Result:**
+
+```go
+{"code": 200, "data": {"name": "John Doe", "email", "johndoe@domain.com"}}
 ```
 
 ## Responder interface 
@@ -108,3 +140,9 @@ type Responder interface {
 	NetworkAuthenticationRequired(w http.ResponseWriter, data ...interface{})
 }
 ```
+
+## License
+
+Copyright (c) 2018-present [Lansana Camara](https://github.com/lansana)
+
+Licensed under [MIT License](./LICENSE)
