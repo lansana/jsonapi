@@ -1,5 +1,5 @@
 # jsonapi
-A lightweight JSON response writer. Fully tested, expressive and uses only the standard library.
+A lightweight JSON response writer for Go. Simple, fully tested, expressive and uses only the standard library.
 
 ## Examples
 
